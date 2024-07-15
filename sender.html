@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhatsApp Link Generator</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+      body {
+        font-family: "Roboto", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        text-align: center;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      input,
+      select,
+      button,
+      textarea {
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        width: 100%;
+        max-width: 300px;
+      }
+      button {
+        background-color: #25d366;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: #128c7e;
+      }
+      .footer {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #888;
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>WhatsApp Link Generator</h1>
+      <div class="mobile-number">
+        <select id="countryCode">
+          <option value="91">India (+91)</option>
+          <option value="1">USA (+1)</option>
+          <option value="44">UK (+44)</option>
+          <option value="61">Australia (+61)</option>
+          <option value="49">Germany (+49)</option>
+          <option value="81">Japan (+81)</option>
+        </select>
+        <input
+          type="text"
+          id="mobileNumber"
+          placeholder="Enter mobile number"
+        />
+      </div>
+      <textarea id="message" placeholder="Enter your message"></textarea>
+      <button onclick="openWhatsApp()">Open WhatsApp</button>
+      <button onclick="openWhatsAppBusiness()">Open WhatsApp Business</button>
+    </div>
+    <div class="footer">Developed by Nency Bhadani</div>
+
+    <script>
+      function openWhatsApp() {
+        var countryCode = document.getElementById("countryCode").value;
+        var mobileNumber = document.getElementById("mobileNumber").value;
+        var message = encodeURIComponent(
+          document.getElementById("message").value
+        );
+        var number = countryCode + mobileNumber;
+        var url = "https://wa.me/" + number + "?text=" + message;
+        window.open(url, "_blank");
+      }
+
+      function openWhatsAppBusiness() {
+        var countryCode = document.getElementById("countryCode").value;
+        var mobileNumber = document.getElementById("mobileNumber").value;
+        var message = encodeURIComponent(
+          document.getElementById("message").value
+        );
+        var number = countryCode + mobileNumber;
+        var url = "https://wa.me/" + number + "?app_absent=1&text=" + message;
+        window.open(url, "_blank");
+      }
+    </script>
+  </body>
+</html>
